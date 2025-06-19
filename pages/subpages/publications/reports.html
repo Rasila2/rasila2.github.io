@@ -1,0 +1,43 @@
+---
+layout: page
+title: Reports & Whitepapers
+permalink: /publications/reports/
+description: Technical reports, white papers, and policy briefs.
+---
+
+<div class="publications">
+  <h1>{{ page.title }}</h1>
+  <p class="page-description">{{ page.description }}</p>
+
+  {% assign reports = site.publications | where: "type", "report" | sort: "date" | reverse %}
+  
+  {% for report in reports %}
+    <article class="publication-item">
+      <h3 class="publication-title">
+        {{ report.title }}
+      </h3>
+      
+      <div class="publication-meta">
+        <div class="report-type">{{ report.report_type }}</div>
+        <div class="report-date">{{ report.date | date: "%B %Y" }}</div>
+        {% if report.institution %}
+          <div class="report-institution">{{ report.institution }}</div>
+        {% endif %}
+      </div>
+      
+      {% if report.abstract %}
+        <div class="report-abstract">
+          {{ report.abstract | truncate: 300 }}
+        </div>
+      {% endif %}
+      
+      {% if report.pdf_url %}
+        <div class="report-links">
+          <a href="{{ report.pdf_url }}" class="button" target="_blank" rel="noopener">
+            <i class="fas fa-file-pdf"></i> Download PDF
+          </a>
+        </div>
+      {% endif %}
+    </article>
+  {% endfor %}
+</div>

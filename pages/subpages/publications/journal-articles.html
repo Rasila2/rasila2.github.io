@@ -1,0 +1,47 @@
+---
+layout: page
+title: Journal Articles
+permalink: /publications/journal-articles/
+description: Published research articles in peer-reviewed journals.
+---
+
+<div class="publications">
+  <h1>{{ page.title }}</h1>
+  <p class="page-description">{{ page.description }}</p>
+
+  {% assign articles = site.publications | where: "type", "journal-article" | sort: "year" | reverse %}
+  
+  {% assign years = articles | map: "year" | uniq %}
+  
+  {% for year in years %}
+    <section class="year-section">
+      <h2>{{ year }}</h2>
+      
+      {% assign year_articles = articles | where: "year", year %}
+      {% for article in year_articles %}
+        <article class="publication-item">
+          <h3 class="publication-title">
+            {{ article.title }}
+          </h3>
+          
+          <div class="publication-authors">
+            {{ article.authors }}
+          </div>
+          
+          <div class="publication-meta">
+            <span class="journal">{{ article.journal }}</span>
+            {% if article.volume %}<span class="volume">{{ article.volume }}</span>{% endif %}
+            {% if article.issue %}({{ article.issue }}){% endif %}
+            {% if article.pages %}: {{ article.pages }}{% endif %}
+          </div>
+          
+          {% if article.doi %}
+            <div class="publication-links">
+              <a href="https://doi.org/{{ article.doi }}" target="_blank" rel="noopener">DOI: {{ article.doi }}</a>
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% endfor %}
+</div>

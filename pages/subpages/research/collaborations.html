@@ -1,0 +1,18 @@
+---
+layout: default
+title: Collaborations
+permalink: /research/collaborations/
+description: Research partnerships and collaborative projects with other institutions and researchers.
+---
+
+<h1> All Collaborations</h1>
+<h3>Research partnerships and collaborative projects with other institutions and researchers.</h3>
+
+<ul>
+  {% for post in site.research %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>

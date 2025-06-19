@@ -1,0 +1,7 @@
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(235, 240, 237);
+  padding: 60px 200px 200px; /* Top and bottom space for fixed header/footer */
+}

@@ -1,0 +1,65 @@
+.study-hero {
+  background: #e0f7fa;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+.study-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.study-hero h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.study-hero p {
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.study-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 3rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.study-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+.study-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.study-card ul {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1rem;
+}
+.study-card a.card-link {
+  color: #00796b;
+  font-weight: bold;
+  text-decoration: none;
+}
+.study-card a.card-link:hover {
+  text-decoration: underline;
+}
+
+.study-contact {
+  background: #263238;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.study-contact a {
+  color: #80deea;
+  font-weight: bold;
+  text-decoration: none;
+}
+.study-contact a:hover {
+  text-decoration: underline;
+}

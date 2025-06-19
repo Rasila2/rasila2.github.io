@@ -1,0 +1,50 @@
+---
+layout: default
+title: Completed Studies
+permalink: /research/completed/
+description: Archive of completed research projects and their outcomes.
+---
+
+<div class="research-projects">
+  <h1>{{ page.title }}</h1>
+  <p class="page-description">{{ page.description }}</p>
+
+  {% assign completed_projects = site.research | where: "status", "completed" %}
+  
+  {% for project in completed_projects %}
+    <article class="project-card">
+      <h2 class="project-title">
+        <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+      </h2>
+      
+      {% if project.timeframe %}
+        <div class="project-timeframe">
+          <i class="fas fa-calendar"></i> {{ project.timeframe }}
+        </div>
+      {% endif %}
+      
+      {% if project.collaborators %}
+        <div class="project-collaborators">
+          <i class="fas fa-users"></i> {{ project.collaborators | join: ", " }}
+        </div>
+      {% endif %}
+      
+      {% if project.excerpt %}
+        <div class="project-excerpt">
+          {{ project.excerpt | strip_html | truncate: 200 }}
+        </div>
+      {% endif %}
+      
+      {% if project.outcomes %}
+        <div class="project-outcomes">
+          <strong>Key Outcomes:</strong>
+          <ul>
+            {% for outcome in project.outcomes %}
+              <li>{{ outcome }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    </article>
+  {% endfor %}
+</div>

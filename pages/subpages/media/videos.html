@@ -1,0 +1,49 @@
+---
+layout: default
+title: Videos & Vlogs
+permalink: /media/videos/
+description: Research-focused videos, video blogs, and recorded presentations.
+---
+
+<div class="media-grid">
+  <h1>{{ page.title }}</h1>
+  <p class="page-description">{{ page.description }}</p>
+
+  {% assign videos = site.media | where: "type", "video" | sort: "date" | reverse %}
+  
+  <div class="video-gallery">
+    {% for video in videos %}
+      <article class="video-item">
+        <div class="video-thumbnail">
+          {% if video.youtube_id %}
+            <img src="https://img.youtube.com/vi/{{ video.youtube_id }}/maxresdefault.jpg" alt="{{ video.title }}">
+            <a href="https://www.youtube.com/watch?v={{ video.youtube_id }}" class="play-button" data-fancybox>
+              <i class="fas fa-play"></i>
+            </a>
+          {% elsif video.thumbnail %}
+            <img src="{{ video.thumbnail | relative_url }}" alt="{{ video.title }}">
+          {% endif %}
+        </div>
+        
+        <h2 class="video-title">{{ video.title }}</h2>
+        
+        <div class="video-meta">
+          <span class="date">{{ video.date | date: "%B %d, %Y" }}</span>
+          {% if video.duration %}
+            <span class="duration">{{ video.duration }}</span>
+          {% endif %}
+        </div>
+        
+        {% if video.description %}
+          <div class="video-description">
+            {{ video.description | truncate: 150 }}
+          </div>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Add FancyBox for video popups -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>

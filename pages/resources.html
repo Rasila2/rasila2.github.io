@@ -1,0 +1,16 @@
+---
+layout: default
+title: Resources
+permalink: /resources/
+---
+<h1>Latest Resources</h1>
+
+<ul>
+  {% for post in site.resources %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>
+<p>For more resources, check out our <a href="/blog/">Blog</a>, <a href="/media/">Media</a>, and <a href="/research/">Research</a> sections.</p>

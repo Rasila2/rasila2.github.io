@@ -1,0 +1,132 @@
+---
+title: RG
+layout: default
+---
+
+<!-- Hero Section -->
+<section class="hero-section">
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">Rasila Gautam</h1>
+      
+      <p class="hero-subtitle">Study, Think and Grow</p>
+      <p class="hero-description">
+        Passionate about environmental science, sustainability research, and sharing knowledge 
+        through writing and multimedia content. Bridging the gap between academic research 
+        and public understanding.
+      </p>
+      <p class="hero-description">
+        Education is the most powerful weapon which you can use to change the life of yourself, your family, and your community. For world-class education, you need to study hard, think critically, and grow continuously. If you are looking for a mentor, a guide, or a collaborator in your academic journey <strong>(Abroad Study)</strong>, you are at the right place. Let's explore the world of knowledge together!
+      </p>
+      <div class="hero-buttons">
+        <a href="/study-abroad/" class="btn btn-primary">Study Abroad </a>
+        <a href="/about/" class="btn btn-secondary">Learn More About Me</a>
+        <a href="/research/" class="btn btn-secondary">View My Research</a>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Quick Stats -->
+<section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <h3 class="stat-number">{{ site.posts.size | default: "0" }}</h3>
+        <p class="stat-label">Blog Posts</p>
+      </div>
+      <div class="stat-item">
+        <h3 class="stat-number">{{ site.research.size | default: "0" }}</h3>
+        <p class="stat-label">Research Projects</p>
+      </div>
+      <div class="stat-item">
+        <h3 class="stat-number">{{ site.publications.size | default: "0" }}</h3>
+        <p class="stat-label">Publications</p>
+      </div>
+    </div>
+</section>
+
+<!-- Featured Content -->
+<section class="featured-section">
+  <div class="container">
+    <h2 class="section-title">Featured Work</h2>
+    
+    <!-- Latest Blog Posts -->
+    <div class="content-block">
+      <h3 class="content-title">Latest Blog Posts</h3>
+      <div class="posts-grid">
+        {% for post in site.posts limit:3 %}
+          <article class="post-card">
+            {% if post.featured_image %}
+              <img src="{{ post.featured_image }}" alt="{{ post.title }}" class="post-image">
+            {% endif %}
+            <div class="post-content">
+              <h4 class="post-title">
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </h4>
+              <p class="post-meta">
+                <time>{{ post.date | date: "%B %d, %Y" }}</time>
+                {% if post.categories.size > 0 %}
+                  <span class="post-category">{{ post.categories.first | replace: '-', ' ' | capitalize }}</span>
+                {% endif %}
+              </p>
+              <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+              <a href="{{ post.url }}" class="read-more">Read More →</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      <div class="section-footer">
+        <a href="/blog/" class="btn btn-outline">View All Posts</a>
+      </div>
+    </div>
+
+    <!-- Research Highlights -->
+    <div class="content-block">
+      <h3 class="content-title">Research Highlights</h3>
+      <div class="research-grid">
+        <!-- Featured Research Item 1 -->
+        <div class="research-card">
+          <div class="research-icon">🌱</div>
+          <h4>Climate Change Impact Studies</h4>
+          <p>Investigating the effects of climate change on biodiversity and ecosystem services in mountainous regions.</p>
+          <a href="/research/" class="card-link">Learn More</a>
+        </div>
+        
+        <!-- Featured Research Item 2 -->
+        <div class="research-card">
+          <div class="research-icon">💧</div>
+          <h4>Water Resource Management</h4>
+          <p>Sustainable water management strategies for urban and rural communities in developing countries.</p>
+          <a href="/research/" class="card-link">Learn More</a>
+        </div>
+        
+        <!-- Featured Research Item 3 -->
+        <div class="research-card">
+          <div class="research-icon">🏭</div>
+          <h4>Environmental Policy Analysis</h4>
+          <p>Evaluating the effectiveness of environmental policies and their impact on sustainable development.</p>
+          <a href="/research/" class="card-link">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Let's Collaborate</h2>
+      <p>Interested in environmental research, sustainability projects, or knowledge sharing? Let's connect and make a positive impact together.</p>
+      <div class="cta-buttons">
+        <a href="/contact/" class="btn btn-primary">Get In Touch</a>
+        <a href="/publications/" class="btn btn-secondary">View Publications</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

@@ -1,0 +1,21 @@
+---
+layout: default
+title: Presentations
+permalink: /media/presentations/
+description: Research-focused presentations and slide decks.
+---
+
+<div class="presentations">
+  <h1>{{ page.title }}</h1>
+  <p class="page-description">{{ page.description }}</p>
+
+  <ul>
+    {% assign filtered_media = site.media | where: "type", "presentation" %}
+    {% for post in filtered_media %}
+      <li>
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        {{ post.excerpt }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

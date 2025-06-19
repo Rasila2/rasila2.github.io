@@ -1,0 +1,18 @@
+---
+layout: default
+title: Opinion & Commentary
+permalink: /blogs/opinion/
+description: Personal insights, commentary, and analysis on various topics.
+---
+
+<h1>Opinion & Commentary </h1>
+<p class="page-description">Personal insights, commentary, and analysis on various topics.</p>
+
+<ul>
+  {% for post in site.blog %}
+    <li>
+      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+      {{ post.excerpt }}
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,147 @@
+permalink: /:categories/:title/
+
+collections:
+  research:
+    output: true
+    permalink: /research/:title/
+  publications:
+    output: true
+    permalink: /publications/:title/
+  media:
+    output: true
+    permalink: /media/:title/
+  posts:
+    output: true
+    permalink: /blog/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "publications"
+    values:
+      layout: "publication"
+  - scope:
+      path: ""
+      type: "research"
+    values:
+      layout: "research"
+  - scope:
+      path: ""
+      type: "media"
+    values:
+      layout: "media"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+
+
+
+plugins:
+  - jekyll-sass-converter
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Site settings
+title: RG
+description: Personal website of Rasila Gautam
+
+
+# Include files and directories
+include:
+  - assets
+  - assets/js
+  - assets/css
+  - _sass
+
+# Exclude files and directories
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .gitignore
+
+
+  
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
+
+
+
+
+
+
+
+
+
+keywords: Rasila, Rasila_Gautam add your own keywords or leave empty
+lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
+icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
+
+url: "https://rasila2.github.io" # the base hostname & protocol for your site
+baseurl: "" # the subpath of your site, e.g. /blog/. Leave blank for root
+last_updated: false # set to true if you want to display last updated in the footer
+impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
+back_to_top: true # set to false to disable the back to top button
+
+
+lazy_loading_images: true 
+
+imagemagick:
+  enabled: true # enables responsive images for your site (recommended, see https://github.com/alshedivat/al-folio/issues/537)
+  widths:
+    - 480
+    - 800
+    - 1400
+  input_directories:
+    - assets/img/
+  input_formats:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+    - ".tiff"
+    - ".gif"
+  output_formats:
+    webp: "-quality 85"
+
+
+
+
+
+
+
+
+
+
+

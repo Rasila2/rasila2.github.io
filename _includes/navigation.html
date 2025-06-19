@@ -1,0 +1,59 @@
+<nav class="main-navigation">
+  <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+    <img src="/assets/images/profile-photo.jpg" alt="Menu" class="menu-image-icon">
+  </button>
+  
+  <ul class="nav-list">
+    {% for item in site.data.navigation %}
+      <li class="nav-item {% if item.dropdown %}has-dropdown{% endif %}">
+        <a href="{{ item.link }}" 
+          class="nav-link {% if page.url == item.link or page.url contains item.link %}active{% endif %}"
+          {% if item.dropdown %}aria-haspopup="true" aria-expanded="false"{% endif %}>
+          
+          {% if item.is_image %}
+            <img src="{{ item.icon }}" alt="{{ item.name }}" class="nav-image-icon">
+          {% else %}
+            <i class="icon-{{ item.icon }}"></i>
+          {% endif %}
+          
+          {{ item.name }}
+
+          {% if item.dropdown %}
+            <span class="dropdown-arrow">▼</span>
+          {% endif %}
+        </a>
+
+        {% if item.dropdown %}
+          <ul class="dropdown-menu">
+            {% for subitem in item.dropdown %}
+              <li class="dropdown-item {% if subitem.dropdown %}has-sub-dropdown{% endif %}">
+                <a href="{{ subitem.link }}" 
+                  class="dropdown-link {% if page.url == subitem.link %}active{% endif %}">
+                  {{ subitem.name }}
+                  {% if subitem.dropdown %}
+                    <span class="dropdown-arrow">▼</span>
+                  {% endif %}
+                </a>
+
+                {% if subitem.dropdown %}
+                  <ul class="sub-dropdown-menu">
+                    {% for thirditem in subitem.dropdown %}
+                      <li class="sub-dropdown-item">
+                        <a href="{{ thirditem.link }}" 
+                          class="sub-dropdown-link {% if page.url == thirditem.link %}active{% endif %}">
+                          {{ thirditem.name }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+
+</nav>

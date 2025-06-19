@@ -1,0 +1,41 @@
+---
+layout: default
+title: Research Data and Resources
+permalink: /research/resources/
+description: A curated list of resources for research, including tools, datasets, and literature.
+---
+
+<div class="resources">
+  <h1>{{ page.title }}</h1>
+  <p class="page-description">{{ page.description }}</p>
+
+  <h2>Tools & Software</h2>
+  <ul>
+    {% for post in site.tools_software %}
+      <li>
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        {{ post.excerpt }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Datasets</h2>
+  <ul>
+    {% for post in site.datasets %}
+      <li>
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        {{ post.excerpt }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Recommended Reading</h2>
+  <ul>
+    {% for post in site.recommended_reading %}
+      <li>
+        <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+        {{ post.excerpt }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

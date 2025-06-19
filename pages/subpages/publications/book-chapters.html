@@ -1,0 +1,37 @@
+---
+layout: default
+title: Book Chapters
+permalink: /publications/book-chapters/
+description: Contributed book chapters and edited volume contributions.
+---
+
+
+<div class="book-chapters">
+  <h1>{{ page.title }}</h1>
+  <p class="page-description">{{ page.description }}</p>
+
+  {% assign chapters = site.publications | where: "type", "book-chapter" | sort: "year" | reverse %}
+  {% assign years = chapters | map: "year" | uniq %}
+
+  {% for year in years %}
+    <section class="year-section">
+      <h2>{{ year }}</h2>
+
+      {% assign year_chapters = chapters | where: "year", year %}
+      {% for chapter in year_chapters %}
+        <article class="book-chapter">
+          <h3 class="book-chapter-title">{{ chapter.title }}</h3>
+          <div class="book-chapter-authors">{{ chapter.authors }}</div>
+          <div class="book-chapter-meta">
+            In: {{ chapter.book_title }}
+            {% if chapter.editors %}(Eds. {{ chapter.editors }}){% endif %}
+            {% if chapter.publisher %}, {{ chapter.publisher }}{% endif %}
+            {% if chapter.pages %}, pp. {{ chapter.pages }}{% endif %}
+          </div>
+          {% if chapter.isbn %}
+            <div class="publication-links">ISBN: {{ chapter.isbn }}</div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </section>
+  {% endfor %}

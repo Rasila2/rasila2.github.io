@@ -1,0 +1,45 @@
+---
+layout: research
+title: Current Projects
+permalink: /research/current/
+description: Ongoing research projects and active investigations.
+---
+
+<div class="research-projects">
+  <h1>{{ page.title }}</h1>
+  <p class="page-description">{{ page.description }}</p>
+
+  {% assign current_projects = site.research | where: "status", "current" %}
+  
+  {% for project in current_projects %}
+    <article class="project-card">
+      <h2 class="project-title">
+        <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+      </h2>
+      
+      {% if project.timeframe %}
+        <div class="project-timeframe">
+          <i class="fas fa-calendar"></i> {{ project.timeframe }}
+        </div>
+      {% endif %}
+      
+      {% if project.collaborators %}
+        <div class="project-collaborators">
+          <i class="fas fa-users"></i> {{ project.collaborators | join: ", " }}
+        </div>
+      {% endif %}
+      
+      {% if project.excerpt %}
+        <div class="project-excerpt">
+          {{ project.excerpt | strip_html | truncate: 200 }}
+        </div>
+      {% endif %}
+      
+      {% if project.funding %}
+        <div class="project-funding">
+          <strong>Funding:</strong> {{ project.funding }}
+        </div>
+      {% endif %}
+    </article>
+  {% endfor %}
+</div>
