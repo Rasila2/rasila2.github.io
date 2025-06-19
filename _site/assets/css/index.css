@@ -1,4 +1,6 @@
 /* Hero Section */
+/*
+
 .hero-section {
   background: #f5f5f5;
   padding: 60px 20px;
@@ -34,6 +36,41 @@
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+
+*/
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-description {
+    max-width: 90%;
+    margin: 0 auto 1.5rem;
+  }
+
+  .profile-photo {
+    width: 100%;
+    max-width: 90%;
+    margin-top: 1rem;
+  }
+
+  .hero-buttons .btn {
+    display: block;
+    margin: 0.5rem auto;
+  }
+}
+
 
 /* Stats Section */
 .stats-section {
