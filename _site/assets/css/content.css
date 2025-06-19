@@ -3,5 +3,32 @@
   display: flex;
   flex-direction: column;
   background-color: rgb(235, 240, 237);
-  padding: 60px 200px 200px; /* Top and bottom space for fixed header/footer */
+  padding: 1rem;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Tablet (768px and up) */
+@media screen and (min-width: 768px) {
+  .main-content {
+    padding: 2rem;
+  }
+}
+
+/* Desktop (1024px and up) */
+@media screen and (min-width: 1024px) {
+  .main-content {
+    padding: 60px 100px;
+    max-width: 1200px;
+  }
+}
+
+/* Large Desktop (1440px and up) */
+@media screen and (min-width: 1440px) {
+  .main-content {
+    padding: 60px 200px;
+  } 
 }
