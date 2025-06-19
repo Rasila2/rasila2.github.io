@@ -4,40 +4,50 @@ title: Journal Articles
 permalink: /publications/journal-articles/
 description: Published research articles in peer-reviewed journals.
 ---
-
 <div class="publications">
-  <h1>{{ page.title }}</h1>
-  <p class="page-description">{{ page.description }}</p>
 
-  {% assign articles = site.publications | where: "type", "journal-article" | sort: "year" | reverse %}
-  
-  {% assign years = articles | map: "year" | uniq %}
-  
+  {% assign journal_articles = site.publications | where: "type", "journal-article" | sort: "year" | reverse %}
+  {% assign years = journal_articles | map: "year" | uniq %}
+
   {% for year in years %}
     <section class="year-section">
       <h2>{{ year }}</h2>
-      
-      {% assign year_articles = articles | where: "year", year %}
-      {% for article in year_articles %}
+
+      {% assign articles_by_year = journal_articles | where: "year", year %}
+      {% for article in articles_by_year %}
         <article class="publication-item">
           <h3 class="publication-title">
-            {{ article.title }}
+            {% if article.url %}
+              <a href="{{ article.url }}">{{ article.title }}</a>
+            {% else %}
+              {{ article.title }}
+            {% endif %}
           </h3>
-          
-          <div class="publication-authors">
-            {{ article.authors }}
-          </div>
-          
+
+          <div class="publication-authors"><u>{{ article.authors | join: ", " }}</u></div>
+          <div class="publication-date"><u>{{ article.date | date_to_string }}</u></div>
+          <div class="publication-description">{{ article.description }}</div>
+
+          {% if article.abstract %}
+            <div class="publication-abstract">{{ article.abstract }}</div>
+          {% endif %}
+
+          {% if article.keywords %}
+            <div class="publication-keywords">
+              <strong>Keywords:</strong> {{ article.keywords | join: ", " }}
+            </div>
+          {% endif %}
+
           <div class="publication-meta">
-            <span class="journal">{{ article.journal }}</span>
-            {% if article.volume %}<span class="volume">{{ article.volume }}</span>{% endif %}
-            {% if article.issue %}({{ article.issue }}){% endif %}
-            {% if article.pages %}: {{ article.pages }}{% endif %}
+            {% if article.journal %}<span class="journal"><u>{{ article.journal }}</u></span>{% endif %}
+            {% if article.volume %}<span class="volume"><u>{{ article.volume }}</u></span>{% endif %}
+            {% if article.issue %}<span class="issue"><u>(Issue {{ article.issue }})</u></span>{% endif %}
+            {% if article.pages %}<span class="pages"><u>pp. {{ article.pages }}</u></span>{% endif %}
           </div>
-          
+
           {% if article.doi %}
             <div class="publication-links">
-              <a href="https://doi.org/{{ article.doi }}" target="_blank" rel="noopener">DOI: {{ article.doi }}</a>
+              <a href="https://doi.org/{{ article.doi }}" target="_blank" rel="noopener noreferrer">DOI: {{ article.doi }}</a>
             </div>
           {% endif %}
         </article>
@@ -45,3 +55,4 @@ description: Published research articles in peer-reviewed journals.
     </section>
   {% endfor %}
 </div>
+
