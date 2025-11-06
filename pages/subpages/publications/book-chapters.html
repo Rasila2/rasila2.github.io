@@ -11,15 +11,18 @@ description: Contributed book chapters and edited volume contributions.
   <p class="page-description">{{ page.description }}</p>
 
   {% assign all_publications = site.publications | default: [] %}
-  {% assign chapters = all_publications | where: "type", "book-chapter" | default: [] | sort: "year" | reverse %}
-  {% assign years = chapters | map: "year" | uniq %}
+  {% assign filtered_publications = all_publications | where: "type", "book-chapter" | default: [] %}
 
-  {% for year in years %}
-    <section class="year-section">
-      <h2>{{ year }}</h2>
+  {% if filtered_publications.size > 0 %}
+    {% assign chapters = filtered_publications | sort: "year" | reverse %}
+    {% assign years = chapters | map: "year" | uniq %}
 
-      {% assign year_chapters = chapters | where: "year", year %}
-      {% for chapter in year_chapters %}
+    {% for year in years %}
+      <section class="year-section">
+        <h2>{{ year }}</h2>
+
+        {% assign year_chapters = chapters | where: "year", year %}
+        {% for chapter in year_chapters %}
         <article class="book-chapter">
           <h3 class="book-chapter-title">{{ chapter.title }}</h3>
           <div class="book-chapter-authors">{{ chapter.authors }}</div>
@@ -33,6 +36,11 @@ description: Contributed book chapters and edited volume contributions.
             <div class="publication-links">ISBN: {{ chapter.isbn }}</div>
           {% endif %}
         </article>
-      {% endfor %}
-    </section>
-  {% endfor %}
+        {% endfor %}
+      </section>
+    {% endfor %}
+  {% else %}
+    <div class="no-publications">
+      <p>No book chapters found.</p>
+    </div>
+  {% endif %}
