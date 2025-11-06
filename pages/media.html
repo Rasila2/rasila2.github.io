@@ -1,16 +1,20 @@
 ---
 layout: default
 title: Media
-permalink: /media/
+permalink: /medias/
 ---
 <h1>Latest Media</h1>
 
 <ul>
-  {% assign all_medias = site.medias | default: [] %}
-  {% for post in all_medias %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      {{ post.excerpt }}
-    </li>
-  {% endfor %}
+  {% assign all_medias = site.medias %}
+  {% if all_medias and all_medias.size > 0 %}
+    {% for post in all_medias %}
+      <li>
+        <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+        {{ post.excerpt }}
+      </li>
+    {% endfor %}
+  {% else %}
+    <li>No media items found.</li>
+  {% endif %}
 </ul>

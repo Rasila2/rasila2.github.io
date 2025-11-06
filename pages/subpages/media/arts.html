@@ -10,44 +10,53 @@ description: Explore various art forms and exhibitions.
 
 <div class="arts-grid">
   {%- comment -%} ensure collection exists before sorting to avoid Liquid null errors {%- endcomment -%}
-  {% assign all_medias = site.medias | default: [] %}
-  {% assign filtered = all_medias | where: "type", "art-exhibition" | default: [] %}
-  {% assign items = filtered | sort: "date" | reverse %}
+  {% assign all_medias = site.medias %}
+  {% if all_medias %}
+    {% assign filtered = all_medias | where: "type", "art-exhibition" %}
+    {% if filtered and filtered.size > 0 %}
+      {% assign items = filtered | sort: "date" | reverse %}
 
-  {% for item in items %}
-    {% if item.type == "art-exhibition" or item.categories contains "arts-exhibition" %}
-      <article class="exhibition-card">
-        {% if item.url %}
-          <a href="{{ item.url | relative_url }}" class="card-link">
+      {% for item in items %}
+        {% if item.type == "art-exhibition" or item.categories contains "arts-exhibition" %}
+          <article class="exhibition-card">
+            {% if item.url %}
+              <a href="{{ item.url | relative_url }}" class="card-link">
+            {% endif %}
+
+            {% if item.featured_image %}
+              <img src="{{ item.featured_image | relative_url }}" alt="{{ item.title }}" loading="lazy">
+            {% endif %}
+
+            <div class="card-content">
+              <h2>{{ item.title }}</h2>
+              <time datetime="{{ item.date | date_to_xmlschema }}">
+                {{ item.date | date: "%b %Y" }}
+              </time>
+
+              {% if item.location %}
+                <p class="location">📍 {{ item.location }}</p>
+              {% endif %}
+
+              {% if item.artists %}
+                <p class="artists">Artists: {{ item.artists | join: ", " }}</p>
+              {% endif %}
+
+              {% if item.description %}
+                <p class="excerpt">{{ item.description | truncate: 140 }}</p>
+              {% endif %}
+            </div>
+
+            {% if item.url %}</a>{% endif %}
+          </article>
         {% endif %}
+      {% endfor %}
 
-        {% if item.featured_image %}
-          <img src="{{ item.featured_image | relative_url }}" alt="{{ item.title }}" loading="lazy">
-        {% endif %}
-
-        <div class="card-content">
-          <h2>{{ item.title }}</h2>
-          <time datetime="{{ item.date | date_to_xmlschema }}">
-            {{ item.date | date: "%b %Y" }}
-          </time>
-
-          {% if item.location %}
-            <p class="location">📍 {{ item.location }}</p>
-          {% endif %}
-
-          {% if item.artists %}
-            <p class="artists">Artists: {{ item.artists | join: ", " }}</p>
-          {% endif %}
-
-          {% if item.description %}
-            <p class="excerpt">{{ item.description | truncate: 140 }}</p>
-          {% endif %}
-        </div>
-
-        {% if item.url %}</a>{% endif %}
-      </article>
+    {% else %}
+      <p>No art exhibitions found.</p>
     {% endif %}
-  {% endfor %}
+  {% else %}
+    <p>No art exhibitions found.</p>
+  {% endif %}
 </div>
 
 <style>

@@ -6,9 +6,20 @@ description: Published research articles in peer-reviewed journals.
 ---
 <div class="publications">
 
-  {% assign all_publications = site.publications | default: [] %}
-  {% assign journal_articles = all_publications | where: "type", "journal-article" | default: [] | sort: "year" | reverse %}
-  {% assign years = journal_articles | map: "year" | uniq %}
+  {% assign all_publications = site.publications %}
+  {% if all_publications %}
+    {% assign filtered = all_publications | where: "type", "journal-article" %}
+    {% if filtered and filtered.size > 0 %}
+      {% assign journal_articles = filtered | sort: "year" | reverse %}
+      {% assign years = journal_articles | map: "year" | uniq %}
+    {% else %}
+      {% assign journal_articles = nil %}
+      {% assign years = nil %}
+    {% endif %}
+  {% else %}
+    {% assign journal_articles = nil %}
+    {% assign years = nil %}
+  {% endif %}
 
   {% for year in years %}
     <section class="year-section">
