@@ -71,6 +71,8 @@
   link: /media/
   icon: video
   dropdown:
+    - name: Arts & Exhibitions
+      link: /media/arts-exhibitions/
     - name: Videos & Vlogs
       link: /media/videos/
     - name: Podcasts

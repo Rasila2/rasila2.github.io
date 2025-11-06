@@ -1,0 +1,27 @@
+---
+layout: default
+title: Arts & Exhibitions
+permalink: /media/arts-exhibitions/
+description: Explore various art forms and exhibitions.
+---
+
+<h1>Arts & Exhibitions</h1>
+
+<div class="media-grid">
+  {% assign items = site.static_files | where_exp: "item", "item.path contains '/_media/arts-exhibitions/'" | reverse %}
+  {% for item in items %}
+    {% if item.extname == '.jpg' or item.extname == '.jpeg' or item.extname == '.png' or item.extname == '.webp' %}
+      <a href="{{ item.path | relative_url }}" data-lightbox="arts" data-title="{{ item.basename }}">
+        <img src="{{ item.path | relative_url }}" alt="{{ item.basename }}" loading="lazy">
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+<style>
+  .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+  .media-grid img { width: 100%; height: auto; object-fit: cover; }
+</style>
