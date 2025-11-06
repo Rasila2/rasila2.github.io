@@ -7,12 +7,13 @@ collections:
   publications:
     output: true
     permalink: /publications/:title/
-  media:
+  medias:
     output: true
     permalink: /media/:title/
   posts:
     output: true
     permalink: /blog/:title/
+
 
 defaults:
   - scope:
@@ -27,7 +28,7 @@ defaults:
       layout: "research"
   - scope:
       path: ""
-      type: "media"
+      type: "medias"
     values:
       layout: "media"
   - scope:
