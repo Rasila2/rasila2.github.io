@@ -2,7 +2,7 @@
 layout: post
 title: "Sea Moonlight"
 date: 2025-11-06
-categories: arts-exhibitions
+categories: arts-exhibition
 image: /_medias/images/sea_moonlight01.jpeg
 ---
 
