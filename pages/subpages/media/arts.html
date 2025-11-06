@@ -17,7 +17,7 @@ description: Explore various art forms and exhibitions.
       {% for item in exhibitions %}
         <article class="exhibition-card">
           {% if item.featured_image %}
-            <img src="{{ item.featured_image | relative_url }}" alt="{{ item.title }}">
+            <img src="{{ item.featured_image | relative_url }}" alt="{{ item.title }}" loading="lazy" width="400" height="300">
           {% endif %}
           <h2><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h2>
           <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%B %d, %Y" }}</time>
