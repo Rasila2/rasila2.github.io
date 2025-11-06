@@ -80,6 +80,7 @@ include:
   - assets/js
   - assets/css
   - _sass
+  - _medias/arts
 
 # Exclude files and directories
 exclude:

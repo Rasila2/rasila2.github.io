@@ -1,7 +1,7 @@
 --- 
 layout: default
 title: Arts & Exhibitions
-permalink: /media/arts_exhibitions/
+permalink: /medias/arts_exhibitions/
 description: Explore various art forms and exhibitions.
 ---
 
@@ -9,75 +9,25 @@ description: Explore various art forms and exhibitions.
 <p>Curated collection of exhibitions and artworks.</p>
 
 <div class="arts-grid">
-  {%- comment -%} ensure collection exists before sorting to avoid Liquid null errors {%- endcomment -%}
   {% assign all_medias = site.medias %}
   {% if all_medias %}
-    {% assign filtered = all_medias | where: "type", "art-exhibition" %}
-    {% if filtered and filtered.size > 0 %}
-      {% assign items = filtered | sort: "date" | reverse %}
-
-      {% for item in items %}
-        {% if item.type == "art-exhibition" or item.categories contains "arts-exhibition" %}
-          <article class="exhibition-card">
-            {% if item.url %}
-              <a href="{{ item.url | relative_url }}" class="card-link">
-            {% endif %}
-
-            {% if item.featured_image %}
-              <img src="{{ item.featured_image | relative_url }}" alt="{{ item.title }}" loading="lazy">
-            {% endif %}
-
-            <div class="card-content">
-              <h2>{{ item.title }}</h2>
-              <time datetime="{{ item.date | date_to_xmlschema }}">
-                {{ item.date | date: "%b %Y" }}
-              </time>
-
-              {% if item.location %}
-                <p class="location">📍 {{ item.location }}</p>
-              {% endif %}
-
-              {% if item.artists %}
-                <p class="artists">Artists: {{ item.artists | join: ", " }}</p>
-              {% endif %}
-
-              {% if item.description %}
-                <p class="excerpt">{{ item.description | truncate: 140 }}</p>
-              {% endif %}
-            </div>
-
-            {% if item.url %}</a>{% endif %}
-          </article>
-        {% endif %}
+    {% assign exhibitions = all_medias | where: "type", "art-exhibition" %}
+    {% if exhibitions and exhibitions.size > 0 %}
+      {% assign exhibitions = exhibitions | sort: "date" | reverse %}
+      {% for item in exhibitions %}
+        <article class="exhibition-card">
+          {% if item.featured_image %}
+            <img src="{{ item.featured_image | relative_url }}" alt="{{ item.title }}">
+          {% endif %}
+          <h2><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h2>
+          <time datetime="{{ item.date | date_to_xmlschema }}">{{ item.date | date: "%B %d, %Y" }}</time>
+          <p>{{ item.description | truncate: 140 }}</p>
+        </article>
       {% endfor %}
-
     {% else %}
       <p>No art exhibitions found.</p>
     {% endif %}
   {% else %}
-    <p>No art exhibitions found.</p>
+    <p>No media collection defined (site.medias is missing).</p>
   {% endif %}
 </div>
-
-<style>
-  .arts-grid { 
-    display: grid; 
-    gap: 2rem; 
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-  }
-  .exhibition-card {
-    border: 1px solid #eee;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .exhibition-card:hover { transform: translateY(-8px); box-shadow: 0 12px 24px rgba(0,0,0,0.15); }
-  .exhibition-card img { width: 100%; height: 200px; object-fit: cover; }
-  .card-content { padding: 1rem; }
-  .card-content h2 { margin: 0 0 0.5rem; font-size: 1.3rem; }
-  .card-content time { color: #666; font-size: 0.9rem; }
-  .location, .artists { margin: 0.4rem 0; font-size: 0.95rem; color: #444; }
-  .excerpt { margin-top: 0.8rem; color: #555; line-height: 1.5; }
-  .card-link { text-decoration: none; color: inherit; display: block; }
-</style>

@@ -11,39 +11,69 @@ mobileToggle.addEventListener('click', () => {
         navList.classList.contains('mobile-menu-open') ? 'true' : 'false'
     );
 });
-
-// Handle dropdown clicks on mobile
+// Handle dropdown clicks on mobile (double-tap to follow link)
 dropdownItems.forEach(item => {
     const link = item.querySelector('.nav__link');
+    let tappedOnce = false;
+    let tapTimeout;
+
     link.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
-            e.preventDefault();
-            item.classList.toggle('dropdown-open');
-            
-            // Close other dropdowns
-            dropdownItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('dropdown-open');
-                }
-            });
+            if (!tappedOnce) {
+                e.preventDefault();
+                tappedOnce = true;
+                item.classList.add('dropdown-open');
+
+                // Close other dropdowns
+                dropdownItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('dropdown-open');
+                    }
+                });
+
+                // Reset tap
+                clearTimeout(tapTimeout);
+                tapTimeout = setTimeout(() => {
+                    tappedOnce = false;
+                }, 500);
+            } else {
+                // Second tap — allow link to work
+                tappedOnce = false;
+                clearTimeout(tapTimeout);
+            }
         }
     });
 });
 
-// Handle sub-dropdown clicks on mobile
+// Handle sub-dropdown clicks on mobile (double-tap to follow link)
 subDropdownItems.forEach(item => {
     const link = item.querySelector('.nav__dropdown-link');
+    let tappedOnce = false;
+    let tapTimeout;
+
     link.addEventListener('click', (e) => {
         if (window.innerWidth <= 768) {
-            e.preventDefault();
-            item.classList.toggle('sub-dropdown-open');
-            
-            // Close other sub-dropdowns
-            subDropdownItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('sub-dropdown-open');
-                }
-            });
+            if (!tappedOnce) {
+                e.preventDefault();
+                tappedOnce = true;
+                item.classList.add('sub-dropdown-open');
+
+                // Close other sub-dropdowns
+                subDropdownItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('sub-dropdown-open');
+                    }
+                });
+
+                // Reset tap
+                clearTimeout(tapTimeout);
+                tapTimeout = setTimeout(() => {
+                    tappedOnce = false;
+                }, 500);
+            } else {
+                tappedOnce = false;
+                clearTimeout(tapTimeout);
+            }
         }
     });
 });

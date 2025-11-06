@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Videos & Vlogs
-permalink: /media/videos/
+permalink: /medias/videos/
 description: Research-focused videos, video blogs, and recorded presentations.
 ---
 
@@ -9,53 +9,44 @@ description: Research-focused videos, video blogs, and recorded presentations.
   <h1>{{ page.title }}</h1>
   <p class="page-description">{{ page.description }}</p>
 
-  {% assign all_medias = site.medias %}
-  {% if all_medias %}
-    {% assign filtered = all_medias | where: "type", "video" %}
-    {% if filtered and filtered.size > 0 %}
-      {% assign videos = filtered | sort: "date" | reverse %}
+  {% assign videos = site.medias | where: "type", "video" | sort: "date" | reverse %}
 
-      <div class="video-gallery">
-        {% for video in videos %}
-    {% else %}
-      <div class="video-gallery">
-        <p>No videos found.</p>
-    {% endif %}
-  {% else %}
+  {% if videos.size > 0 %}
     <div class="video-gallery">
-      <p>No videos found.</p>
-  {% endif %}
-      <article class="video-item">
-        <div class="video-thumbnail">
-          {% if video.youtube_id %}
-            <img src="https://img.youtube.com/vi/{{ video.youtube_id }}/maxresdefault.jpg" alt="{{ video.title }}">
-            <a href="https://www.youtube.com/watch?v={{ video.youtube_id }}" class="play-button" data-fancybox>
-              <i class="fas fa-play"></i>
-            </a>
-          {% elsif video.thumbnail %}
-            <img src="{{ video.thumbnail | relative_url }}" alt="{{ video.title }}">
-          {% endif %}
-        </div>
-        
-        <h2 class="video-title">{{ video.title }}</h2>
-        
-        <div class="video-meta">
-          <span class="date">{{ video.date | date: "%B %d, %Y" }}</span>
-          {% if video.duration %}
-            <span class="duration">{{ video.duration }}</span>
-          {% endif %}
-        </div>
-        
-        {% if video.description %}
-          <div class="video-description">
-            {{ video.description | truncate: 150 }}
+      {% for video in videos %}
+        <article class="video-item">
+          <div class="video-thumbnail">
+            {% if video.youtube_id %}
+              <a href="https://www.youtube.com/watch?v={{ video.youtube_id }}" data-fancybox>
+                <img src="https://img.youtube.com/vi/{{ video.youtube_id }}/maxresdefault.jpg" alt="{{ video.title }}">
+                <span class="play-button">Play</span>
+              </a>
+            {% elsif video.thumbnail %}
+              <img src="{{ video.thumbnail | relative_url }}" alt="{{ video.title }}">
+            {% endif %}
           </div>
-        {% endif %}
-      </article>
-    {% endfor %}
-  </div>
+          
+          <h2 class="video-title">{{ video.title }}</h2>
+          
+          <div class="video-meta">
+            <span class="date">{{ video.date | date: "%B %d, %Y" }}</span>
+            {% if video.duration %}
+              <span class="duration">{{ video.duration }}</span>
+            {% endif %}
+          </div>
+          
+          {% if video.description %}
+            <div class="video-description">
+              {{ video.description | truncate: 150 }}
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No videos found.</p>
+  {% endif %}
 </div>
 
-<!-- Add FancyBox for video popups -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox.umd.js"></script>
