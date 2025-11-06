@@ -6,19 +6,24 @@ description: Explore various art forms and exhibitions.
 ---
 
 <h1>Arts & Exhibitions</h1>
+ Here is a collection of arts and exhibitions:
 
-<div class="media-grid">
-  {% for post in <site class="arts_exhibitions"></site> %}
-    <a href="{{ post.url | relative_url }}">
-      <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
-    </a>
-  {% endfor %}
+<div class="arts_exhibitions">
+    <div class="media-grid">
+        {% assign arts_exhibitions = site.medias | where_exp: "item", "item.categories contains 'arts-exhibitions'" | sort: "date" | reverse %}
+        
+        {% for art in arts_exhibitions %}
+            <div class="media-item">
+            <a href="{{ art.url }}">
+                {% if art.image %}
+                <img src="{{ art.image | relative_url }}" alt="{{ art.title }}">
+                {% else %}
+                <div class="placeholder-image">No Image Available</div>
+                {% endif %}
+                <h3 class="media-title">{{ art.title }}</h3>
+            </a>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-
-<style>
-  .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
-  .media-grid img { width: 100%; height: auto; object-fit: cover; }
-</style>
