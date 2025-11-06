@@ -67,20 +67,20 @@
     - name: Reports & Whitepapers
       link: /publications/reports/
 
-- name: Media
-  link: /media/
+- name: Medias
+  link: /medias/
   icon: video
   dropdown:
     - name: Arts & Exhibitions
-      link: /media/arts_exhibitions/
+      link: /medias/arts_exhibitions/
     - name: Videos & Vlogs
-      link: /media/videos/
+      link: /medias/videos/
     - name: Podcasts
-      link: /media/podcasts/
+      link: /medias/podcasts/
     - name: Interviews
-      link: /media/interviews/
+      link: /medias/interviews/
     - name: Presentations
-      link: /media/presentations/
+      link: /medias/presentations/
 
 - name: Resources
   link: /resources/

@@ -9,7 +9,7 @@ collections:
     permalink: /publications/:title/
   medias:
     output: true
-    permalink: /media/:title/
+    permalink: /medias/:title/
   posts:
     output: true
     permalink: /blog/:title/
@@ -30,7 +30,7 @@ defaults:
       path: ""
       type: "medias"
     values:
-      layout: "media"
+      layout: "medias"
   - scope:
       path: ""
       type: "posts"
