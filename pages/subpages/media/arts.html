@@ -8,13 +8,10 @@ description: Explore various art forms and exhibitions.
 <h1>Arts & Exhibitions</h1>
 
 <div class="media-grid">
-  {% assign items = site.static_files | where_exp: "item", "item.path contains '/_media/arts_exhibitions/'" | reverse %}
-  {% for item in items %}
-    {% if item.extname == '.jpg' or item.extname == '.jpeg' or item.extname == '.png' or item.extname == '.webp' %}
-      <a href="{{ item.path | relative_url }}" data-lightbox="arts" data-title="{{ item.basename }}">
-        <img src="{{ item.path | relative_url }}" alt="{{ item.basename }}" loading="lazy">
-      </a>
-    {% endif %}
+  {% for post in <site class="arts_exhibitions"></site> %}
+    <a href="{{ post.url | relative_url }}">
+      <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" loading="lazy">
+    </a>
   {% endfor %}
 </div>
 

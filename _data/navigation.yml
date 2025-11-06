@@ -72,7 +72,7 @@
   icon: video
   dropdown:
     - name: Arts & Exhibitions
-      link: /media/arts-exhibitions/
+      link: /media/arts_exhibitions/
     - name: Videos & Vlogs
       link: /media/videos/
     - name: Podcasts
