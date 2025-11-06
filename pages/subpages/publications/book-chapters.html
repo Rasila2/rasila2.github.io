@@ -10,7 +10,8 @@ description: Contributed book chapters and edited volume contributions.
   <h1>{{ page.title }}</h1>
   <p class="page-description">{{ page.description }}</p>
 
-  {% assign chapters = site.publications | where: "type", "book-chapter" | sort: "year" | reverse %}
+  {% assign all_publications = site.publications | default: [] %}
+  {% assign chapters = all_publications | where: "type", "book-chapter" | default: [] | sort: "year" | reverse %}
   {% assign years = chapters | map: "year" | uniq %}
 
   {% for year in years %}

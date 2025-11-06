@@ -6,7 +6,8 @@ description: Published research articles in peer-reviewed journals.
 ---
 <div class="publications">
 
-  {% assign journal_articles = site.publications | where: "type", "journal-article" | sort: "year" | reverse %}
+  {% assign all_publications = site.publications | default: [] %}
+  {% assign journal_articles = all_publications | where: "type", "journal-article" | default: [] | sort: "year" | reverse %}
   {% assign years = journal_articles | map: "year" | uniq %}
 
   {% for year in years %}

@@ -9,8 +9,9 @@ description: Research-focused videos, video blogs, and recorded presentations.
   <h1>{{ page.title }}</h1>
   <p class="page-description">{{ page.description }}</p>
 
-  {% assign videos = site.media | where: "type", "video" | sort: "date" | reverse %}
-  
+  {% assign all_medias = site.medias | default: [] %}
+  {% assign videos = all_medias | where: "type", "video" | default: [] | sort: "date" | reverse %}
+
   <div class="video-gallery">
     {% for video in videos %}
       <article class="video-item">

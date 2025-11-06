@@ -9,7 +9,8 @@ description: Technical reports, white papers, and policy briefs.
   <h1>{{ page.title }}</h1>
   <p class="page-description">{{ page.description }}</p>
 
-  {% assign reports = site.publications | where: "type", "report" | sort: "date" | reverse %}
+  {% assign all_publications = site.publications | default: [] %}
+  {% assign reports = all_publications | where: "type", "report" | default: [] | sort: "date" | reverse %}
   
   {% for report in reports %}
     <article class="publication-item">

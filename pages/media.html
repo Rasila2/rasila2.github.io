@@ -6,7 +6,8 @@ permalink: /media/
 <h1>Latest Media</h1>
 
 <ul>
-  {% for post in site.media %}
+  {% assign all_medias = site.medias | default: [] %}
+  {% for post in all_medias %}
     <li>
       <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
       {{ post.excerpt }}
