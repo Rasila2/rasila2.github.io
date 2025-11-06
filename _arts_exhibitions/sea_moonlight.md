@@ -3,7 +3,7 @@ layout: post
 title: "Sea Moonlight"
 date: 2025-11-06
 categories: arts-exhibitions
-image: /_media/arts-exhibitions/sea_moonlight01.jpeg
+image: /arts-exhibitions/sea_moonlight01.jpeg
 ---
 
 ![Sea Moonlight]({{ page.image | relative_url }})
